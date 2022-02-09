@@ -20,9 +20,13 @@ app.get("/", function (req, res) {
 
 
 // your first API endpoint... 
-app.get("/api/.+", function (req, res) {
-  var value = req.url.replace("/api/", '');
-  var time = new Date(value)
+app.get("/api/:value", function (req, res) {
+  var {value} = req.params;
+  if(/-/.test(value)){
+    var time = new Date(value);
+  } else {
+    var time = new Date(parseInt(value));
+  }
   if(time == 'Invalid Date'){
     res.json({error: 'Invalid Date'})
   }
