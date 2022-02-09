@@ -20,7 +20,7 @@ app.get("/", function (req, res) {
 
 
 // your first API endpoint... 
-app.get("/api/timestamp/:date_string", function(req, res) {
+app.get("/api/:date_string", function(req, res) {
   var date_string = req.params.date_string;
   if(isNaN(date_string)) {
     var dateToMillis = Date.parse(date_string);
