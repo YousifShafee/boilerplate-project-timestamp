@@ -20,17 +20,12 @@ app.get("/", function (req, res) {
 
 
 // your first API endpoint... 
-app.get("/api/:value", function (req, res) {
-  var {value} = req.params;
-  if(/-/.test(value)){
-    var time = new Date(value);
-  } else {
-    var time = new Date(parseInt(value));
-  }
+app.get("/api/:date", function (req, res) {
+  var date = req.params.date;
+  var time = new Date(date);
   if(time == 'Invalid Date'){
     res.json({error: 'Invalid Date'})
-  }
-  else{
+  } else {
     res.json({unix: time.getTime(), utc: time.toUTCString()})
   }
 });
